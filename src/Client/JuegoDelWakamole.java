@@ -29,6 +29,8 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
 
     public String URLservidor=ActiveMQConnection.DEFAULT_BROKER_URL; //Misma computadora
 
+    public String URLhost="localhost";
+
     //public String URLservidor = "tcp://10.10.26.139:61616"; //Otra computadora, servidor
 
 
@@ -99,20 +101,29 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
                         }else{
                             grid[kInt][lInt]=0;
                             System.out.println("Se presiono el boton en posicion  "+kInt+"   "+lInt);
+
+
                             but.setText("O");
                             but.setBackground(Color.RED);
                             points++;
                             puntajeLabel.setText("Puntaje: "+points);
 
                             // ------------Enviar el mensaje TCP--------------
+
                             Socket s = null;
 
                             try {
-
                                 int serverPort = 49152;
-                                s = new Socket(URLservidor, serverPort);
+                                // -------------------direccion IP del servidor------------------------
+                                s = new Socket(URLhost, serverPort);
+                                // s = new Socket("127.0.0.1", serverPort);
+                                //DataInputStream in = new DataInputStream(s.getInputStream());
                                 DataOutputStream out = new DataOutputStream(s.getOutputStream());
-                                out.writeUTF(kInt+" "+lInt);
+
+                                out.writeUTF(kInt+" "+lInt);            // UTF is a string encoding
+
+                               // String data = in.readUTF();
+                                //System.out.println("Received: " + data);
 
                             } catch (UnknownHostException e) {
                                 System.out.println("Sock:" + e.getMessage());
@@ -127,13 +138,17 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
                                     System.out.println("close:" + e.getMessage());
                                 }
                             }
+
                         }
+
+
                     }
                 });
                 buttonPanel.add(botones[i][j]);
             }
         }
         contentPane.add(buttonPanel);
+
         setContentPane(contentPane);
         pack();
         setLocationByPlatform(true);
@@ -175,6 +190,7 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
 
     @Override
     public void onMonstruoReceived(int columna, int fila) {
+       // System.out.println("Prueba Listener "+columna+" "+fila);
 
         if(grid[columna][fila]==0){
             grid[columna][fila]=1;
