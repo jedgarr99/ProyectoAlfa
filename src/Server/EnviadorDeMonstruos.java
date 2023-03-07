@@ -11,9 +11,10 @@ import java.io.*;
 
 public class EnviadorDeMonstruos {
 
-    // URL of the JMS server
+    //Adonde envio los monstruos, a mi mismo, yo soy el server
     private static final String url = ActiveMQConnection.DEFAULT_BROKER_URL;
-    // default broker URL is : tcp://localhost:61616"
+    //private static final String url = "tcp://148.205.134.68:61616";
+
 
     private final int avgInterarrivalTime = 3000; // in ms
 
@@ -88,6 +89,7 @@ public void startListeningTCP() {
         } catch (IOException e) {
             System.out.println("Listen :" + e.getMessage());
         }
+
     }).start();
 }
 

@@ -3,7 +3,6 @@ package Client;
 import Server.MonstruoListener;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
-
 import javax.jms.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 public class EscuchadorDeMonstruos extends Thread {
 
     // URL of the JMS server
-    private static final String url = ActiveMQConnection.DEFAULT_BROKER_URL;
+    private static  String url = ActiveMQConnection.DEFAULT_BROKER_URL;
     // default broker URL is : tcp://localhost:61616"
     private static final String subject = "MONSTRUOS";
     public int ultimaColumna=-1;
@@ -22,7 +21,13 @@ public class EscuchadorDeMonstruos extends Thread {
     public Character charFila;
     private final List<MonstruoListener> listeners = new ArrayList<>();
 
+    public EscuchadorDeMonstruos(){
 
+    }
+
+    public EscuchadorDeMonstruos(String direccionAescuchar){
+        url=direccionAescuchar;
+    }
 
     public int getUltimaColumna(){
         return ultimaColumna;
