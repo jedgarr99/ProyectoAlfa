@@ -21,6 +21,10 @@ public class EscuchadorDeMonstruos extends Thread {
     public Character charFila;
     private final List<MonstruoListener> listeners = new ArrayList<>();
 
+
+
+
+
     public EscuchadorDeMonstruos(){
 
     }
@@ -46,9 +50,11 @@ public class EscuchadorDeMonstruos extends Thread {
         listeners.add(listener);
     }
 
-    private void notifyMonstruoReceived(int columna, int fila) {
+
+
+    private void notifyMonstruoReceived(int columna, int fila, int counter) {
         for (MonstruoListener listener : listeners) {
-            listener.onMonstruoReceived(columna, fila);
+            listener.onMonstruoReceived(columna, fila,counter);
         }
     }
 
@@ -78,11 +84,15 @@ public class EscuchadorDeMonstruos extends Thread {
                         charColumna=textMessage.getText().charAt(0);
                         charFila=textMessage.getText().charAt(2);
 
+                        String[] arrOfStr = textMessage.getText().split("-", 2);
+
+                        int  counter = Integer.parseInt(arrOfStr[1]);
+
                         ultimaColumna=Integer.parseInt(charColumna.toString());
                         ultimaFila=Integer.parseInt(charFila.toString());
 
                         //System.out.println(ultimaColumna+" "+ultimaFila);
-                        notifyMonstruoReceived(ultimaColumna, ultimaFila);
+                        notifyMonstruoReceived(ultimaColumna, ultimaFila,counter);
 
                     }
                     if (textMessage.getText().trim().equals("The End")) {

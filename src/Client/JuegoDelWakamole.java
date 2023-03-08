@@ -93,12 +93,15 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
                         Character k = but.getActionCommand().charAt(1);
                         Character l = but.getActionCommand().charAt(4);
 
+
+
                         int kInt=Character.getNumericValue(k);
                         int lInt=Character.getNumericValue(l);
 
                         if(grid[kInt][lInt]==0){
                             System.out.println("No puedes presionarlo");
                         }else{
+                            int counter =grid[kInt][lInt];
                             grid[kInt][lInt]=0;
                             System.out.println("Se presiono el boton en posicion  "+kInt+"   "+lInt);
 
@@ -120,7 +123,7 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
                                 //DataInputStream in = new DataInputStream(s.getInputStream());
                                 DataOutputStream out = new DataOutputStream(s.getOutputStream());
 
-                                out.writeUTF(kInt+" "+lInt);            // UTF is a string encoding
+                                out.writeUTF(kInt+"-"+lInt+"-"+counter);            // UTF is a string encoding
 
                                // String data = in.readUTF();
                                 //System.out.println("Received: " + data);
@@ -189,12 +192,12 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
     }
 
     @Override
-    public void onMonstruoReceived(int columna, int fila) {
+    public void onMonstruoReceived(int columna, int fila,int counter) {
        // System.out.println("Prueba Listener "+columna+" "+fila);
 
         if(grid[columna][fila]==0){
-            grid[columna][fila]=1;
-            System.out.println("Sale un topo en   "+columna+"   "+fila);
+            grid[columna][fila]=counter;
+            System.out.println("Sale el topo"+counter+" en   "+columna+"   "+fila);
             botones[columna][fila].setText("X");
             botones[columna][fila].setBackground(Color.GREEN);
         }else{

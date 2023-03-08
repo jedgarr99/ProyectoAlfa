@@ -1,13 +1,15 @@
+
+
 package Server;
 
-import org.apache.activemq.ActiveMQConnection;
-import org.apache.activemq.ActiveMQConnectionFactory;
+        import org.apache.activemq.ActiveMQConnection;
+        import org.apache.activemq.ActiveMQConnectionFactory;
 
-import javax.jms.*;
-import java.util.Random;
-
-import java.net.*;
-import java.io.*;
+        import javax.jms.*;
+        import java.util.Random;
+        import java.util.HashMap;
+        import java.net.*;
+        import java.io.*;
 
 public class EnviadorDeMonstruos {
 
@@ -19,6 +21,17 @@ public class EnviadorDeMonstruos {
     private final int avgInterarrivalTime = 3000; // in ms
 
     private static final String subject = "MONSTRUOS";
+
+    private int counter=1;
+
+    public boolean[] monstruosGolpeados = new boolean[100];
+
+    HashMap<String, Integer> jugadores = new HashMap<String, Integer>();
+
+    public HashMap<String, Integer> getJugadores(){
+        return jugadores;
+    }
+
 
     public void enviaMonstruos() {
         MessageProducer messageProducer;
@@ -37,8 +50,8 @@ public class EnviadorDeMonstruos {
                 Topic topic = session.createTopic(subject);
                 messageProducer = session.createProducer(topic);
                 textMessage = session.createTextMessage();
-                textMessage.setText(myColumn + " " + myRow); // random number from 1 to 10 where 10 represents the worst news
-
+                textMessage.setText(myColumn + " " + myRow+"-"+counter); // random number from 1 to 10 where 10 represents the worst news
+                counter++;
                 long delay = (long) (avgInterarrivalTime * (-Math.log(Math.random()))); //  Arrival process is Poisson Distributed
                 try {
                     System.out.println("Sending " + textMessage.getText());
@@ -75,23 +88,31 @@ public class EnviadorDeMonstruos {
         }
     }
 
-public void startListeningTCP() {
-    new Thread(() -> {
-        try {
-            int serverPort = 49152;
-            ServerSocket listenSocket = new ServerSocket(serverPort);
-            while (true) {
-                System.out.println("Waiting for messages...");
-                Socket clientSocket = listenSocket.accept();  // Listens for a connection to be made to this socket and accepts it. The method blocks until a connection is made.
-                ConnectionTCPsockets c = new ConnectionTCPsockets(clientSocket);
-                c.start();
-            }
-        } catch (IOException e) {
-            System.out.println("Listen :" + e.getMessage());
-        }
+    public void startListeningTCP() {
 
-    }).start();
-}
+        new Thread(() -> {
+            try {
+                int serverPort = 49152;
+                ServerSocket listenSocket = new ServerSocket(serverPort);
+                while (true) {
+                    System.out.println("Waiting for messages...");
+                    Socket clientSocket = listenSocket.accept();  // Listens for a connection to be made to this socket and accepts it. The method blocks until a connection is made.
+
+                    ConnectionTCPsockets c = new ConnectionTCPsockets(clientSocket,jugadores,monstruosGolpeados);
+                    c.start();
+
+
+
+
+
+
+                }
+            } catch (IOException e) {
+                System.out.println("Listen :" + e.getMessage());
+            }
+
+        }).start();
+    }
 
 
     public static void main(String[] args) {
@@ -101,6 +122,5 @@ public void startListeningTCP() {
     }
 
 }
-
 
 
