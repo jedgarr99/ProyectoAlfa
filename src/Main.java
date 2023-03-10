@@ -14,16 +14,28 @@ public class Main {
         {
             public void run()
             {
-                JuegoDelWakamole lay = new JuegoDelWakamole();
+                JuegoDelWakamole lay = new JuegoDelWakamole("Jorge");
                 lay.createAndDisplayGUI();
-                lay.startGame();
-               // new Server.EnviadorDeMonstruos().enviaMonstruos();
+
             }
         });
 
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                JuegoDelWakamole lay = new JuegoDelWakamole("Anairam");
+                lay.createAndDisplayGUI();
+
+            }
+        });
+
+        /*
         EnviadorDeMonstruos sender = new EnviadorDeMonstruos();
         sender.startListeningTCP();
         sender.enviaMonstruos();
+
+         */
 
     }
 }

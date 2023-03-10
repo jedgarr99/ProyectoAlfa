@@ -13,10 +13,10 @@ public class EscuchadorDeMonstruos extends Thread {
     // URL of the JMS server
     private static  String url = ActiveMQConnection.DEFAULT_BROKER_URL;
     // default broker URL is : tcp://localhost:61616"
-    private static final String subject = "MONSTRUOS";
+    private final String subject;
     public int ultimaColumna=-1;
     public int ultimaFila=-1;
-    public int coordenadasLeidas=0;
+    //public int coordenadasLeidas=0;
     public Character charColumna;
     public Character charFila;
     private final List<MonstruoListener> listeners = new ArrayList<>();
@@ -25,26 +25,18 @@ public class EscuchadorDeMonstruos extends Thread {
 
 
 
-    public EscuchadorDeMonstruos(){
+    /*public EscuchadorDeMonstruos(){
 
     }
 
-    public EscuchadorDeMonstruos(String direccionAescuchar){
+     */
+
+    public EscuchadorDeMonstruos(String direccionAescuchar,String canalAescuchar){
         url=direccionAescuchar;
+        subject=canalAescuchar;
     }
 
-    public int getUltimaColumna(){
-        return ultimaColumna;
-    }
 
-    public int getUltimaFila(){
-        return ultimaFila;
-    }
-
-    public int getCoordenadasLeidas(){
-        return coordenadasLeidas;
-
-    }
 
     public void addMonstruoListener(MonstruoListener listener) {
         listeners.add(listener);
@@ -52,9 +44,9 @@ public class EscuchadorDeMonstruos extends Thread {
 
 
 
-    private void notifyMonstruoReceived(int columna, int fila, int counter) {
+    private void notifyMonstruoReceived(int columna, int fila, int counter, String ganadorUltimoJuego,int numJuego) {
         for (MonstruoListener listener : listeners) {
-            listener.onMonstruoReceived(columna, fila,counter);
+            listener.onMonstruoReceived(columna, fila,counter,ganadorUltimoJuego,numJuego);
         }
     }
 
@@ -67,6 +59,8 @@ public class EscuchadorDeMonstruos extends Thread {
 
             MessageConsumer messageConsumer;
             TextMessage textMessage;
+
+            //arreglar el fiiin ------------------------------
             boolean endFinancialSession = false;
 
             Session session = connection.createSession(false /*Transacter*/, Session.AUTO_ACKNOWLEDGE);
@@ -76,27 +70,33 @@ public class EscuchadorDeMonstruos extends Thread {
             System.out.println("I'm a escuchador de mosntruos " );
             messageConsumer = session.createConsumer(topic);
             connection.start();
+
             while (!endFinancialSession) {
                 textMessage = (TextMessage) messageConsumer.receive();
                 if (textMessage != null) {
-                    if (!textMessage.getText().trim().equals("The End")) {
-                        coordenadasLeidas++;
+                    if (!textMessage.getText().trim().equals("Alguien ya gano")) {
+                        //coordenadasLeidas++;
                         charColumna=textMessage.getText().charAt(0);
                         charFila=textMessage.getText().charAt(2);
 
-                        String[] arrOfStr = textMessage.getText().split("-", 2);
+                        String[] arrOfStr = textMessage.getText().split("-", 4);
 
                         int  counter = Integer.parseInt(arrOfStr[1]);
+
+                        String ganadorUltimoJuego=arrOfStr[2];
+
+                        int numJuego=  Integer.parseInt( arrOfStr[3]);
 
                         ultimaColumna=Integer.parseInt(charColumna.toString());
                         ultimaFila=Integer.parseInt(charFila.toString());
 
                         //System.out.println(ultimaColumna+" "+ultimaFila);
-                        notifyMonstruoReceived(ultimaColumna, ultimaFila,counter);
+                        notifyMonstruoReceived(ultimaColumna, ultimaFila,counter,ganadorUltimoJuego,numJuego );
 
                     }
-                    if (textMessage.getText().trim().equals("The End")) {
+                    if (textMessage.getText().trim().equals("Alguien ya gano")) {
                         endFinancialSession = true;
+                        System.out.println("Alguien ya gano");
                     }
                 }
 
@@ -110,7 +110,7 @@ public class EscuchadorDeMonstruos extends Thread {
     }
 
     public static void main(String[] args) {
-        new EscuchadorDeMonstruos().start();
+        //new EscuchadorDeMonstruos().start();
     }
 
 }
