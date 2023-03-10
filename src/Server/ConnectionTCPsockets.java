@@ -85,10 +85,12 @@ public class ConnectionTCPsockets extends Thread {
                 if(jugadores.containsKey(usuario)){
 
                     int counter = Integer.parseInt(arrOfStr[2]);
+                    int puntos= jugadores.get(usuario);
 
                     if(!monstruosGolpeados[counter-1]){
-                        int puntos= jugadores.get(usuario);
+
                         puntos++;
+
                         updateJugadores(usuario,puntos);
                         //jugadores.put(usuario,puntos);
                         System.out.println(usuario+" ahora tiene  "+puntos+"  puntos");
@@ -100,9 +102,16 @@ public class ConnectionTCPsockets extends Thread {
                             updateGanador(usuario);
                             updateNumeroJuego();
                             resetearPuntos();
+                            out.writeUTF("9999");
+                        }else{
+                            out.writeUTF(""+puntos);
                         }
 
+                    }else{
+
+                        out.writeUTF(""+puntos);
                     }
+
                 }else{
                     System.out.println("Jugador no registrado ");
                 }

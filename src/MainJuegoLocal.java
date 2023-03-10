@@ -1,14 +1,21 @@
 import Client.JuegoDelWakamole;
-import Server.ConnectionTCPsockets;
 import Server.EnviadorDeMonstruos;
 
 import javax.swing.*;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 
-public class Main {
+public class MainJuegoLocal {
     public static void main(String[] args) {
+
+
+        Thread arrancarServidor=new Thread(() -> {
+
+            EnviadorDeMonstruos sender = new EnviadorDeMonstruos();
+            sender.startListeningTCP();
+            sender.enviaMonstruos();
+
+
+        });
+        arrancarServidor.start();
 
         SwingUtilities.invokeLater(new Runnable()
         {
@@ -29,13 +36,6 @@ public class Main {
 
             }
         });
-
-        /*
-        EnviadorDeMonstruos sender = new EnviadorDeMonstruos();
-        sender.startListeningTCP();
-        sender.enviaMonstruos();
-
-         */
 
     }
 }

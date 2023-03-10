@@ -1,4 +1,4 @@
-package Client;//Version con Listener
+package Client;
 
 import Server.MonstruoListener;
 
@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
@@ -18,6 +19,7 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
     private JLabel positionLabel;
     private JLabel puntajeLabel;
     private JLabel jugadorLabel;
+    private JLabel puntosLabel;
     private JButton botonRegistro;
     private JButton resetButton;
     private static final int gridSize = 3;
@@ -29,9 +31,7 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
     public  int points;
 
     //informacion para primer mensaje Tcp del registro
-
     public int serverPort = 49152;
-
     public String URLcomunicacionTCP = "127.0.0.1"; //Para juegos locales
     //public String URLcomunicacionTCP="10.10.26.139";   //Para jugar con otra compu
 
@@ -39,17 +39,17 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
     //Informacion que da el registro
     public int puertoMonstruos=0;
     public String canalMonstruos;
-
     public String URLcomunicacionTCP2;
-
     public String URLcomunicacionTopicos ="tcp://"+ URLcomunicacionTCP2 +":61616";
-
-
-
-
     public EscuchadorDeMonstruos escuchador;
+    public long startTime=0;
+    public long spentTime=0;
+    public double promedioTiemRespuesta=0;
+    ArrayList<Long> tiemposRespuesta= new ArrayList<>();
 
 
+
+    public boolean juegoAutomatico=false;
 
     public JuegoDelWakamole(String nombreUsuario) {
         super("Client.JuegoDelWakamole");
@@ -57,8 +57,14 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
         this.nombreUsuario=nombreUsuario;
     }
 
-    public  void createAndDisplayGUI()
-    {
+    public JuegoDelWakamole(String nombreUsuario,boolean juegoAutomatico) {
+        super("Client.JuegoDelWakamole");
+        botones = new JButton[3][3];
+        this.nombreUsuario=nombreUsuario;
+        this.juegoAutomatico=juegoAutomatico;
+    }
+
+    public  void createAndDisplayGUI() {
 
         grid = new int[FILAS][FILAS];
         points=0;
@@ -81,6 +87,8 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
         JPanel labelPanel = new JPanel();
         jugadorLabel=new JLabel("Jugador: "+nombreUsuario, JLabel.CENTER);
         positionLabel = new JLabel("Juego: "+numJuego, JLabel.CENTER);
+        puntosLabel= new JLabel("Puntos: "+points, JLabel.CENTER);
+
         //puntajeLabel= new JLabel("Puntaje: "+points, JLabel.CENTER);
         puntajeLabel= new JLabel("Ganador Juego "+(numJuego-1)+" :-------", JLabel.CENTER);
 
@@ -97,13 +105,17 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
         JPanel jugadorPanel = new JPanel();
         JPanel buttonLeftPanel = new JPanel();
         JPanel registroPanel = new JPanel();
+        JPanel puntosPanel = new JPanel();
+
 
         jugadorPanel.add(jugadorLabel);
         labelPanel.add(positionLabel);
         buttonLeftPanel.add(puntajeLabel);
+        puntosPanel.add(puntosLabel);
         registroPanel.add(botonRegistro);
         leftPanel.add(jugadorPanel);
         leftPanel.add(labelPanel);
+        leftPanel.add(puntosPanel);
         leftPanel.add(buttonLeftPanel);
         leftPanel.add(registroPanel);
 
@@ -141,9 +153,6 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
 
                             but.setText("O");
                             but.setBackground(Color.RED);
-                            //-----------corregir sistema puntos -------------
-                            points++;
-                            //puntajeLabel.setText("Puntaje: "+points);
 
                             // ------------Enviar el mensaje TCP--------------
 
@@ -154,8 +163,25 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
                                 // -------------------direccion IP del servidor------------------------
                                 s = new Socket(URLcomunicacionTCP2, puertoMonstruos);
                                 DataOutputStream out = new DataOutputStream(s.getOutputStream());
+                                DataInputStream in = new DataInputStream(s.getInputStream());
 
+                                startTime=System.nanoTime();
                                 out.writeUTF(kInt+"-"+lInt+"-"+counter+"-"+nombreUsuario);
+
+                                String data = in.readUTF();
+                                spentTime = System.nanoTime() - startTime;
+                                //System.out.println("Received: " + data);
+                                tiemposRespuesta.add(spentTime);
+
+                                int sumaPuntos=Integer.parseInt(data);
+                                //System.out.println("se le van a sumar"+sumaPuntos);
+                                points=sumaPuntos;
+                                if(points<9999){
+                                    puntosLabel.setText("Puntos: "+points);
+                                }else{
+                                    puntosLabel.setText("Puntos: GANASTE");
+                                }
+
 
                             } catch (UnknownHostException e) {
                                 System.out.println("Sock:" + e.getMessage());
@@ -187,8 +213,6 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
         setVisible(true);
     }
 
-
-
     public void autoSelectRandomButton() {
 
         Timer timer = new Timer();
@@ -214,7 +238,6 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
     }
 
     public void registro(){
-
 
         // ------------Enviar el mensaje TCP registro--------------
 
@@ -261,11 +284,80 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
 
     }
 
+    public long registroEstresamiento(){
+
+        // ------------Enviar el mensaje TCP registro--------------
+
+        Socket s = null;
+
+        try {
+            s = new Socket(URLcomunicacionTCP, serverPort);
+
+            DataInputStream in = new DataInputStream(s.getInputStream());
+            DataOutputStream out = new DataOutputStream(s.getOutputStream());
+
+            startTime=System.nanoTime();
+
+            out.writeUTF("Me quiero registrar-a-b-"+nombreUsuario);
+
+            String data = in.readUTF();
+            spentTime = System.nanoTime() - startTime;
+            System.out.println("Received: " + data);
+
+            String[] arrOfStr = data.split("-", 6);
+
+            URLcomunicacionTCP2=arrOfStr[0];
+
+            URLcomunicacionTopicos ="tcp://"+ URLcomunicacionTCP2 +":61616";
+
+            puertoMonstruos=Integer.parseInt(arrOfStr[1]);
+            canalMonstruos=arrOfStr[2];
+
+
+
+
+
+
+        } catch (UnknownHostException e) {
+            System.out.println("Sock:" + e.getMessage());
+        } catch (EOFException e) {
+            System.out.println("EOF:" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IO:" + e.getMessage());
+        } finally {
+            if (s != null) try {
+                s.close();
+            } catch (IOException e) {
+                System.out.println("close:" + e.getMessage());
+            }
+        }
+
+        return spentTime;
+    }
 
     public void startGame() {
         escuchador = new EscuchadorDeMonstruos(URLcomunicacionTopicos,canalMonstruos);
         escuchador.addMonstruoListener(this);
         escuchador.start();
+    }
+
+    public void registroAutomatico(){
+        botonRegistro.doClick();
+    }
+
+    public double promedioEstresamiento(){
+        double suma=0;
+        int contador=0;
+        for (Long tiempo:tiemposRespuesta){
+            if(tiempo==0){
+                System.out.println("Error en tiempos de respuesta ");
+            }else{
+                suma+=tiempo;
+                contador++;
+            }
+        }
+
+        return suma/contador;
     }
 
     @Override
@@ -276,6 +368,15 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
         botones[columna][fila].setText("X");
         botones[columna][fila].setBackground(Color.GREEN);
 
+        //----------------Para el estresamiento-----------------
+        if(juegoAutomatico)
+            botones[columna][fila].doClick();
+
+
+
+        if(this.numJuego!=numJuego){
+            puntosLabel.setText("Puntos: 0");
+        }
         this.numJuego=numJuego;
         positionLabel.setText("Juego: "+numJuego);
         puntajeLabel.setText("Ganador Juego "+(numJuego-1)+": "+ganadorUltimoJuego);
