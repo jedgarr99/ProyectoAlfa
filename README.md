@@ -36,13 +36,13 @@ El tiempo de respuesta en el registro TCP empieza cuando el cliente envía un me
 Las pruebas se hicieron inicialmente para 50, 100, 200, 500 queríamos ir aumentando el número de clientes lentamente, sin embargo, notamos que el cambio era mínimo, casi nulo. Por esto, decidimos aumentar el número de clientes y realizamos las pruebas variando los clientes aumentandolos en 500 hasta llegar a 4500.
 Como resultado encontramos que el promedio del tiempo de respuesta disminuía hasta alcanzar un equilibrio (ver Figura 1). 
 
-<p style="text-align: center;">
+<div style="text-align: center;">
   
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png). 
   
 *Figura 1. Gráfica de tiempo de respuesta promedio*
   
- </p>
+ </div>
 
 Con respecto a la desviación estándar pudimos notar que había una gran variabilidad en la cantidad de tiempo que el servidor tarda en responder a las solicitudes de registro de los clientes. Esto podría deberse a varios factores, como la carga del servidor. Las pruebas de estresamiento se realizaron de mnera continua una tras otra, sin embargo, notamos que si dejabamos descansar el servidor un par de minutos los tiempos de respuesta se recuperaban y disminuian. Esta variabilidad puede ser un problema porque el usuario podría recibir una respuesta de registro muy rápida en un momento dado ymuy lenta en otro lo cual generaría incertidumbre y desconfianza en el sistema lo cual significaría una experiencia negativa para el usuario.  
   
