@@ -36,10 +36,9 @@ El tiempo de respuesta en el registro TCP empieza cuando el cliente envía un me
 Las pruebas se hicieron inicialmente para 50, 100, 200, 500 queríamos ir aumentando el número de clientes lentamente, sin embargo, notamos que el cambio era mínimo, casi nulo. Por esto, decidimos aumentar el número de clientes y realizamos las pruebas variando los clientes aumentandolos en 500 hasta llegar a 4500.
 Como resultado encontramos que el promedio del tiempo de respuesta disminuía hasta alcanzar un equilibrio (ver Figura 1). 
 
-<div style="text-align: center;">
+
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png).  
-   
- </div> 
+  
  
 *Figura 1. Gráfica de tiempo de respuesta promedio*
 
