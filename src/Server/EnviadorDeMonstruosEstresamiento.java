@@ -35,7 +35,7 @@ public class EnviadorDeMonstruosEstresamiento {
 
     public int[] numJuego={1};
 
-    public boolean[] monstruosGolpeados = new boolean[1000];
+    public boolean[] monstruosGolpeados = new boolean[2000];
 
     HashMap<String, Integer> jugadores = new HashMap<String, Integer>();
 

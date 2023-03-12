@@ -70,6 +70,7 @@ public class ConnectionTCPsockets extends Thread {
             String[] arrOfStr = data.split("-", 4);
             String usuario = arrOfStr[3];
 
+            //Si se esta registrando
             if(data.charAt(0)=='M'){
 
                 //Añadir Synchronicity
@@ -79,7 +80,7 @@ public class ConnectionTCPsockets extends Thread {
                     System.out.println("Jugador nuevo registrado: "+usuario);
                     out.writeUTF(url+"-"+puertoConexionesTCP+"-"+subject);
                 }
-
+                //Si esta golpeando monstruo
             }else{
 
                 if(jugadores.containsKey(usuario)){

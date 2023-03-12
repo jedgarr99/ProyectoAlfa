@@ -24,13 +24,13 @@ public class EstresadorRegistro {
 
     public static void main(String[] args) throws InterruptedException {
 
-        int numeroClientes=1500;
+        int numeroClientes=4000;
         long[] tiemposRespuesta = new long[numeroClientes];
 
 
         Thread arrancarServidor=new Thread(() -> {
 
-            EnviadorDeMonstruosEstresamiento sender = new EnviadorDeMonstruosEstresamiento(20);
+            EnviadorDeMonstruosEstresamiento sender = new EnviadorDeMonstruosEstresamiento(30);
 
             sender.startListeningTCP();
             sender.enviaMonstruos();
