@@ -38,6 +38,7 @@ Como resultado encontramos que el promedio del tiempo de respuesta disminuía ha
 
 <div style="text-align: center;">
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png).  
+   
  </div> 
  
 *Figura 1. Gráfica de tiempo de respuesta promedio*
