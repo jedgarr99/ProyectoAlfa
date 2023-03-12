@@ -55,6 +55,9 @@ El tiempo de respuesta en el juego TCP empieza a medirse cuando el jugador golpe
 Para estas pruebas decidimos aumentar el número de clientes lentamente aumentando la cantidad en desde 5 hasta llegar a 95. El tiempo de respuesta promedio fue aumentando mientras aumentamos el número de clientes de manera similar a una raíz cuadrada, crecimiento conocido como modelo de crecimiento lento (ver figura 3). El crecimiento aumenta lentamente hasta llegar a un punto en donde se estabiliza.   
   
 
+![Interfaces corriendo](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/InterfacesCorriendo.png). 
+  
+*Imagen 1. Interfaces corriendo el juego del wacamole*
 
 
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20del%20juego%20por%20nu%CC%81mero%20de%20clientes.png). 
@@ -69,7 +72,11 @@ En cuanto a la desviación estándar el crecimiento fue casi lineal (ver figura 
   
 *Figura 4. Gráfica de desviación estándar del tiempo de respuesta del juego*
 
-Una vez que llegamos a los 80 clientes comenzamos a tener fallas en el juego y había una cantidad de clientes que no podían ser atendidos, no obstante, esta cantidad era mínima. Continuamos realizando pruebas hasta llegar a los 160 clientes, aquí el servidor comenzaba a trabarse y detenía el juego para todos los jugadores. Por esto, consideramos que 160 clientes es el límite de usuarios que nuestro juego puede soportar.
+Una vez que llegamos a los 80 clientes comenzamos a tener fallas en el juego y había una cantidad de clientes que no podían ser atendidos, no obstante, esta cantidad era mínima (ver figura 5). Continuamos realizando pruebas hasta llegar a los 160 clientes, aquí el servidor comenzaba a trabarse y detenía el juego para todos los jugadores. Por esto, consideramos que 160 clientes es el límite de usuarios que nuestro juego puede soportar.
+
+![Tablas de fallas por clientes](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/FallasCliente.png). 
+  
+*Figura 5. Promedio de clientes fallidos por número de clientes*
 
 
 
