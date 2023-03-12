@@ -37,12 +37,11 @@ Las pruebas se hicieron inicialmente para 50, 100, 200, 500 queríamos ir aument
 Como resultado encontramos que el promedio del tiempo de respuesta disminuía hasta alcanzar un equilibrio (ver Figura 1). 
 
 <div style="text-align: center;">
-  
-![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png). 
-  
+![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png).  
+ </div> 
+ 
 *Figura 1. Gráfica de tiempo de respuesta promedio*
-  
- </div>
+
 
 Con respecto a la desviación estándar pudimos notar que había una gran variabilidad en la cantidad de tiempo que el servidor tarda en responder a las solicitudes de registro de los clientes. Esto podría deberse a varios factores, como la carga del servidor. Las pruebas de estresamiento se realizaron de mnera continua una tras otra, sin embargo, notamos que si dejabamos descansar el servidor un par de minutos los tiempos de respuesta se recuperaban y disminuian. Esta variabilidad puede ser un problema porque el usuario podría recibir una respuesta de registro muy rápida en un momento dado ymuy lenta en otro lo cual generaría incertidumbre y desconfianza en el sistema lo cual significaría una experiencia negativa para el usuario.  
   
