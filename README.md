@@ -86,11 +86,10 @@ Una vez que llegamos a los 80 clientes comenzamos a tener fallas en el juego y h
 *Imagen 1. Interfaces corriendo el juego del wacamole*
 
 ## Apéndice
-Para realizar las pruebas de estresamiento utilizamos una hoja de google sheets que anexamos en el siguiente link [Hoja de cálculo]
+Para realizar las pruebas de estresamiento utilizamos [una hoja de google sheets].
 
 
-
- [Hoja de cálculo]:<https://docs.google.com/spreadsheets/d/1_IqFxpXPLhaIPGtxc2jPxBndKFb0pn40KcxUYPXwQ3c/edit?usp=sharing>
+[una hoja de google sheets]:<https://docs.google.com/spreadsheets/d/1_IqFxpXPLhaIPGtxc2jPxBndKFb0pn40KcxUYPXwQ3c/edit?usp=sharing>
 
 
 
