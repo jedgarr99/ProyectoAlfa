@@ -63,11 +63,6 @@ El tiempo de respuesta en el juego TCP empieza a medirse cuando el jugador golpe
 Para estas pruebas decidimos aumentar el número de clientes lentamente aumentando la cantidad en desde 5 hasta llegar a 95. El tiempo de respuesta promedio fue aumentando mientras aumentamos el número de clientes de manera similar a una raíz cuadrada, crecimiento conocido como modelo de crecimiento lento (ver figura 3). El crecimiento aumenta lentamente hasta llegar a un punto en donde se estabiliza.   
   
 
-![Interfaces corriendo](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/InterfacesCorriendo.png). 
-  
-*Imagen 1. Interfaces corriendo el juego del wacamole*
-
-
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20del%20juego%20por%20n%C3%BAmero%20de%20clientes%20(1).png). 
   
 *Figura 3. Gráfica de tiempo de respuesta promedio del juego*
@@ -85,6 +80,14 @@ Una vez que llegamos a los 80 clientes comenzamos a tener fallas en el juego y h
 ![Tablas de fallas por clientes](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/FallasCliente.png). 
   
 *Figura 5. Promedio de clientes fallidos por número de clientes*
+
+![Interfaces corriendo](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/InterfacesCorriendo.png). 
+  
+*Imagen 1. Interfaces corriendo el juego del wacamole*
+
+## Apéndice
+Para realizar las pruebas de estresamiento utilizamos una hoja de google sheets que anexamos en el siguiente link ![Hoja de cálculo](https://docs.google.com/spreadsheets/d/1_IqFxpXPLhaIPGtxc2jPxBndKFb0pn40KcxUYPXwQ3c/edit?usp=sharing). 
+
 
 
 
