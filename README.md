@@ -37,7 +37,7 @@ En el paquete "Cliente" en la clase "Juego del Wackamole" será necesario cambia
 
 
 ## Pruebas de Estresamiento 
-Para realizar estas pruebas se crearon 3 clases nuevas el estresador de registro, el estresador de juego y enviador de monstruos estresador. En el estresador de registro se implementó un método que instancia de manera automática una cantidad N de usuarios registrándose. Además se implementaron métodos para simular el registro sin generar la interfaz gráfica. Para el estresador de juego se implementó un método que instancia de manera automática una cantidad N de usuarios con su respectiva interfaz. También se generó un nuevo enviador de monstruos en donde le damos una cantidad M de monstruos y una vez que esa cantidad fue enviada el servidor se detiene automáticamente (a diferencia del enviador de monstruos original en donde el servidor no se detiene).
+Para realizar estas pruebas se crearon 3 clases nuevas el estresador de registro, el estresador de juego y enviador de monstruos estresador. En el estresador de registro se implementó un método que instancia de manera automática una cantidad N de usuarios registrándose. Además se implementaron métodos para simular el registro sin generar la interfaz gráfica. Para el estresador de juego se implementó un método que instancia de manera automática una cantidad N de usuarios con su respectiva interfaz. También se generó un nuevo enviador de monstruos en donde le damos una cantidad M de monstruos y una vez que esa cantidad fue enviada el servidor se detiene automáticamente (a diferencia del enviador de monstruos original en donde el servidor no se detiene). Guardamos y procesamos los resultados de las pruebas de estresamiento en [una hoja de google sheets].
 ##### Pruebas de tiempo de respuesta en el registro
 Las pruebas del tiempo de respuesta en el registro consistieron en tomar una cantidad de clientes y ejecutar el juego 10 veces para recuperar el tiempo promedio de respuesta en el registro y la desviación estándar. 
 El tiempo de respuesta en el registro TCP empieza cuando el cliente envía un mensaje de solicitud de registro con su nombre de usuario y termina cuando recibe la respuesta del servidor de que recibió correctamente los datos del cliente.
@@ -85,8 +85,7 @@ Una vez que llegamos a los 80 clientes comenzamos a tener fallas en el juego y h
   
 *Imagen 1. Interfaces corriendo el juego del wacamole*
 
-## Apéndice
-Para realizar las pruebas de estresamiento utilizamos [una hoja de google sheets].
+
 
 
 [una hoja de google sheets]:<https://docs.google.com/spreadsheets/d/1_IqFxpXPLhaIPGtxc2jPxBndKFb0pn40KcxUYPXwQ3c/edit?usp=sharing>
