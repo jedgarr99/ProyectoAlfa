@@ -38,6 +38,7 @@ Como resultado encontramos que el promedio del tiempo de respuesta disminuía ha
 
 
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png). 
+  
 *Figura 1. Gráfica de tiempo de respuesta promedio*
 
 Con respecto a la desviación estándar pudimos notar que había una gran variabilidad en la cantidad de tiempo que el servidor tarda en responder a las solicitudes de registro de los clientes. Esto podría deberse a varios factores, como la carga del servidor. Las pruebas de estresamiento se realizaron de mnera continua una tras otra, sin embargo, notamos que si dejabamos descansar el servidor un par de minutos los tiempos de respuesta se recuperaban y disminuian. Esta variabilidad puede ser un problema porque el usuario podría recibir una respuesta de registro muy rápida en un momento dado ymuy lenta en otro lo cual generaría incertidumbre y desconfianza en el sistema lo cual significaría una experiencia negativa para el usuario.  
@@ -55,6 +56,7 @@ Para estas pruebas decidimos aumentar el número de clientes lentamente aumentan
 
 
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20del%20juego%20por%20nu%CC%81mero%20de%20clientes.png). 
+  
 *Figura 3. Gráfica de tiempo de respuesta promedio del juego*
 
 En cuanto a la desviación estándar el crecimiento fue casi lineal (ver figura 4). Esto quiere decir que mientras más se estrsa el servidor la calidad del servicio va disminuyendo. Por un lado porque el promedio de tiempo de respuesta es mayor y por el otro lado porque la variabilidad de la respuesta también aumenta, y como explicamos anteriormente, una variabilidad en el tiempo de respuesta afecta negativamente en la experiencia de usuario.
