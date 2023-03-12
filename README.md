@@ -68,7 +68,7 @@ Para estas pruebas decidimos aumentar el número de clientes lentamente aumentan
 *Imagen 1. Interfaces corriendo el juego del wacamole*
 
 
-![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20del%20juego%20por%20nu%CC%81mero%20de%20clientes.png). 
+![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20del%20juego%20por%20n%C3%BAmero%20de%20clientes%20(1).png). 
   
 *Figura 3. Gráfica de tiempo de respuesta promedio del juego*
 
