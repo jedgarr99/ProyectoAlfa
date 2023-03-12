@@ -33,9 +33,9 @@ Para realizar estas pruebas se crearon 2 clases nuevas
 ##### Pruebas de tiempo de respuesta en el registro
 Las pruebas del tiempo de respuesta en el registro consistieron en tomar una cantidad de clientes y ejecutar el juego 10 veces para recuperar el tiempo promedio de respuesta en el registro. 
 El tiempo de respuesta en el registro TCP empieza cuando el cliente envía un mensaje de solicitud de registro con su nombre de usuario y termina cuando recibe la respuesta del servidor de que recibió correctamente los datos del cliente.
-Las pruebas se hicieron inicialmente para 50, 100, 200, 500 queríamos ir aumentando el número de clientes lentamente, sin embargo, notamos que el cambio era mínimo, casi nulo. Por esto, decidimos aumentar el número de clientes y realizamos las pruebas variando los clientes aumentandolos en 500 hasta llegar al 4500.
+Las pruebas se hicieron inicialmente para 50, 100, 200, 500 queríamos ir aumentando el número de clientes lentamente, sin embargo, notamos que el cambio era mínimo, casi nulo. Por esto, decidimos aumentar el número de clientes y realizamos las pruebas variando los clientes aumentandolos en 500 hasta llegar a 4500 (ver figura 1.).
 
-![Grafica de desviacion](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Desviaci%C3%B3n%20est%C3%A1ndar%20del%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png?raw=true)
+![Grafica de desviacion](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Desviaci%C3%B3n%20est%C3%A1ndar%20del%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png?raw=true)*Figura 1. Gráfica de desviación estándar*
 
 
 
