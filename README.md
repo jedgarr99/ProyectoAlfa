@@ -27,10 +27,8 @@
 
 - Sí, los jugadores pueden entrar y salir del juego en cualquier momento sin afectar la partida actual. Además, el contexto de los jugadores, incluyendo el número de monstruos golpeados, se conserva incluso si un jugador sale y vuelve a entrar.
 ## Instrucciones para jugar el juego del wacamole en su computadora
-Una vez descargado el proyecto es importante que primero agregue la librería lib de ApacheMQ para esto diríjase a 
-File->Project Structure->Libraries ahí es necesario dar click en el ícono de más "+" y agregar la carpeta "lib" de ApacheMQ. 
-También será necesario poner la versión correcta de Java en el proyecto, para esto diríjase a  
-File->Project Structure->Project->SDK y seleccione "19 Oracle OpenJDK version 19.0.2".
+Una vez descargado el proyecto es importante que primero agregue la librería lib de ApacheMQ para esto diríjase a File->Project Structure->Libraries ahí es necesario dar click en el ícono de más "+" y agregar la carpeta "lib" de ApacheMQ. 
+También será necesario poner la versión correcta de Java en el proyecto, para esto diríjase a File->Project Structure->Project->SDK y seleccione "19 Oracle OpenJDK version 19.0.2".
 - Servidor
 En el paquete "Servidor" en la clase "Enviador de monstruos" será necesario cambiar la IP en la variable `URLcomunicacion` a su propia IP y ejecutar la clase "Enviador de monstruos".
 
