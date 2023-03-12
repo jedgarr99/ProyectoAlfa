@@ -36,6 +36,7 @@ El tiempo de respuesta en el registro TCP empieza cuando el cliente envía un me
 Las pruebas se hicieron inicialmente para 50, 100, 200, 500 queríamos ir aumentando el número de clientes lentamente, sin embargo, notamos que el cambio era mínimo, casi nulo. Por esto, decidimos aumentar el número de clientes y realizamos las pruebas variando los clientes aumentandolos en 500 hasta llegar a 4500.
 Como resultado encontramos que el promedio del tiempo de respuesta disminuía hasta alcanzar un equilibrio (ver Figura 1). 
 
+
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20por%20n%C3%BAmero%20de%20clientes.png)
 *Figura 1. Gráfica de tiempo de respuesta promedio*
 
@@ -47,10 +48,14 @@ Las pruebas del tiempo de respuesta del juego consistieron en tomar una cantidad
 El tiempo de respuesta en el juego TCP empieza a medirse cuando el jugador golpea un monstruo. En ese momento envía un mensaje al servidor con las coordenadas del monstruo que golpeo. El servidor checa si fue el primero en golpear el monstruo y si lo fue le anota el punto al jugador y le responde con su número de puntos actualizado, si ganó el juego el servidor le envía un mensaje de victoria. Si el jugador no fue el primero en golpear el monstruo le regresa su número de puntos acumulado. El tiempo de respuesta termina cuando el jugador recibe la respuesta del servidor ya sea de victoria o de número de puntos acumulado.
 Para estas pruebas decidimos aumentar el número de clientes lentamente aumentando la cantidad en desde 5 hasta llegar a 95. El tiempo de respuesta promedio fue aumentando mientras aumentábamos el número de clientes de manera similar a una raíz cuadrada, crecimiento conocido como modelo de crcimiento lento (ver figura 3). El crecimiento aumenta lentamente hasta llegar a un punto en donde se estabiliza. 
 
+
+
 ![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20del%20juego%20por%20nu%CC%81mero%20de%20clientes.png)
 *Figura 3. Gráfica de tiempo de respuesta promedio del juego*
 
-En cuanto a la desviación estándar el crecimiento fue casi lineal (ver figura 4). Esto quiere decir que mientras más se estrsa el servidor la calidad del servicio va disminuyendo. Por un lado porque el promedio de tiempo de respuesta es mayor y por el otro lado porque la variabilidad de la respuesta también aumenta, y como explicamos anteriormente, una variabilidad en el tiempo de respuesta afecta negativamente en la experiencia de usuario. 
+En cuanto a la desviación estándar el crecimiento fue casi lineal (ver figura 4). Esto quiere decir que mientras más se estrsa el servidor la calidad del servicio va disminuyendo. Por un lado porque el promedio de tiempo de respuesta es mayor y por el otro lado porque la variabilidad de la respuesta también aumenta, y como explicamos anteriormente, una variabilidad en el tiempo de respuesta afecta negativamente en la experiencia de usuario.
+
+
 
 ![Grafica de desviacion](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Desviacio%CC%81n%20esta%CC%81ndar%20del%20tiempo%20de%20respuesta%20de%20juego%20por%20nu%CC%81mero%20de%20clientes.png)
 *Figura 4. Gráfica de desviación estándar del tiempo de respuesta del juego*
