@@ -12,7 +12,9 @@ public class EnviadorDeMonstruos {
 
     //Adonde envio los monstruos, a mi mismo, yo soy el server
     //private static final String url = ActiveMQConnection.DEFAULT_BROKER_URL;
-    public String URLcomunicacion="127.0.0.1";
+    //public String URLcomunicacion="127.0.0.1";
+    public String URLcomunicacion="10.10.23.144";
+
 
     public String url ="tcp://"+ URLcomunicacion +":61616";
 

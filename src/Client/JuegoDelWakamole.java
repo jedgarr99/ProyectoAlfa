@@ -33,7 +33,7 @@ public class JuegoDelWakamole extends JFrame implements MonstruoListener
     //informacion para primer mensaje Tcp del registro
     public int serverPort = 49152;
     public String URLcomunicacionTCP = "127.0.0.1"; //Para juegos locales
-    //public String URLcomunicacionTCP="10.10.26.139";   //Para jugar con otra compu
+    //public String URLcomunicacionTCP="192.168.1.81";   //Para jugar con otra compu
 
 
     //Informacion que da el registro

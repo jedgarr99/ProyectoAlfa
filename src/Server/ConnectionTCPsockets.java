@@ -79,6 +79,8 @@ public class ConnectionTCPsockets extends Thread {
                     updateJugadores(usuario,0);
                     System.out.println("Jugador nuevo registrado: "+usuario);
                     out.writeUTF(url+"-"+puertoConexionesTCP+"-"+subject);
+                }else{
+                    out.writeUTF(url+"-"+puertoConexionesTCP+"-"+subject);
                 }
                 //Si esta golpeando monstruo
             }else{
