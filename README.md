@@ -26,10 +26,18 @@
 ##### ¿Pueden los jugadores entrar y salir del juego en cualquier momento?
 
 - Sí, los jugadores pueden entrar y salir del juego en cualquier momento sin afectar la partida actual. Además, el contexto de los jugadores, incluyendo el número de monstruos golpeados, se conserva incluso si un jugador sale y vuelve a entrar.
+## Instrucciones para jugar el juego del wacamole en su computadora
+Una vez descargado el proyecto es importante que primero agregue la librería lib de ApacheMQ para esto diríjase a File->Project Structure->Libraries ahí es necesario dar click en el ícono de más "+" y agregar la carpeta "lib" de ApacheMQ. 
+También será necesario poner la versión correcta de Java en el proyecto, para esto diríjase a File->Project Structure->Project->SDK y seleccione "19 Oracle OpenJDK version 19.0.2".
+- Servidor
+En el paquete "Servidor" en la clase "Enviador de monstruos" será necesario cambiar la IP en la variable `URLcomunicacion` a su propia IP y ejecutar la clase "Enviador de monstruos".
+
+- Cliente
+En el paquete "Cliente" en la clase "Juego del Wackamole" será necesario cambiar la IP en la variable `URLcomunicacionTCP` a la IP del servidor. También será necesario escoger nuestro nombre de usuario para esto, modificamos el constructor JuegoDelWacamole en el main línea 392.
 
 
 ## Pruebas de Estresamiento 
-Para realizar estas pruebas se crearon 3 clases nuevas el estresador de registro, el estresador de juego y enviador de monstruos estresador. En el estresador de registro se implementó un método que instancia de manera automática una cantidad N de usuarios registrándose. Además se implementaron métodos para simular el registro sin generar la interfaz gráfica. Para el estresador de juego se implementó un método que instancia de manera automática una cantidad N de usuarios con su respectiva interfaz. También se generó un nuevo enviador de monstruos en donde le damos una cantidad M de monstruos y una vez que esa cantidad fue enviada el servidor se detiene automáticamente (a diferencia del enviador de monstruos original en donde el servidor no se detiene).
+Para realizar estas pruebas se crearon 3 clases nuevas el estresador de registro, el estresador de juego y enviador de monstruos estresador. En el estresador de registro se implementó un método que instancia de manera automática una cantidad N de usuarios registrándose. Además se implementaron métodos para simular el registro sin generar la interfaz gráfica. Para el estresador de juego se implementó un método que instancia de manera automática una cantidad N de usuarios con su respectiva interfaz. También se generó un nuevo enviador de monstruos en donde le damos una cantidad M de monstruos y una vez que esa cantidad fue enviada el servidor se detiene automáticamente (a diferencia del enviador de monstruos original en donde el servidor no se detiene). Guardamos y procesamos los resultados de las pruebas de estresamiento en [una hoja de google sheets].
 ##### Pruebas de tiempo de respuesta en el registro
 Las pruebas del tiempo de respuesta en el registro consistieron en tomar una cantidad de clientes y ejecutar el juego 10 veces para recuperar el tiempo promedio de respuesta en el registro y la desviación estándar. 
 El tiempo de respuesta en el registro TCP empieza cuando el cliente envía un mensaje de solicitud de registro con su nombre de usuario y termina cuando recibe la respuesta del servidor de que recibió correctamente los datos del cliente.
@@ -55,12 +63,7 @@ El tiempo de respuesta en el juego TCP empieza a medirse cuando el jugador golpe
 Para estas pruebas decidimos aumentar el número de clientes lentamente aumentando la cantidad en desde 5 hasta llegar a 95. El tiempo de respuesta promedio fue aumentando mientras aumentamos el número de clientes de manera similar a una raíz cuadrada, crecimiento conocido como modelo de crecimiento lento (ver figura 3). El crecimiento aumenta lentamente hasta llegar a un punto en donde se estabiliza.   
   
 
-![Interfaces corriendo](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/InterfacesCorriendo.png). 
-  
-*Imagen 1. Interfaces corriendo el juego del wacamole*
-
-
-![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20del%20juego%20por%20nu%CC%81mero%20de%20clientes.png). 
+![Grafica de promedio](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Promedio%20de%20tiempo%20de%20respuesta%20del%20juego%20por%20n%C3%BAmero%20de%20clientes%20(1).png). 
   
 *Figura 3. Gráfica de tiempo de respuesta promedio del juego*
 
@@ -77,6 +80,16 @@ Una vez que llegamos a los 80 clientes comenzamos a tener fallas en el juego y h
 ![Tablas de fallas por clientes](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/FallasCliente.png). 
   
 *Figura 5. Promedio de clientes fallidos por número de clientes*
+
+![Interfaces corriendo](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/InterfacesCorriendo.png). 
+  
+*Imagen 1. Interfaces corriendo el juego del wacamole*
+
+
+
+
+[una hoja de google sheets]:<https://docs.google.com/spreadsheets/d/1_IqFxpXPLhaIPGtxc2jPxBndKFb0pn40KcxUYPXwQ3c/edit?usp=sharing>
+
 
 
 
