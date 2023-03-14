@@ -71,7 +71,7 @@ En cuanto a la desviación estándar el crecimiento fue casi lineal (ver figura 
   
   
 
-![Grafica de desviacion](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Desviacio%CC%81n%20esta%CC%81ndar%20del%20tiempo%20de%20respuesta%20de%20juego%20por%20nu%CC%81mero%20de%20clientes.png). 
+![Grafica de desviacion](https://github.com/jedgarr99/ProyectoAlfa/blob/main/GR%C3%81FICAS/Desviaci%C3%B3n%20est%C3%A1ndar%20del%20tiempo%20de%20respuesta%20de%20juego%20por%20n%C3%BAmero%20de%20clientes.png). 
   
 *Figura 4. Gráfica de desviación estándar del tiempo de respuesta del juego*
 
